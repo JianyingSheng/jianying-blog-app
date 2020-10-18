@@ -3,7 +3,15 @@
 from django.contrib import admin
 from . import models
 
+##################################
+class CommentInline(admin.TabularInline):
+    model = models.Comment
+##################################
+
 class PostAdmin(admin.ModelAdmin):
+    inlines = [
+        CommentInline,
+    ]
     list_display = (
         'title',
         'author',
@@ -20,7 +28,6 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = (
         'status',
     )
-# Register the `Post` model
 admin.site.register(models.Post,PostAdmin)
 
 @admin.register(models.Topic)
