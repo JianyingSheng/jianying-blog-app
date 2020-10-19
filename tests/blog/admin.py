@@ -41,10 +41,10 @@ class TopicAdmin(admin.ModelAdmin):
 
 @admin.register(models.Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'post', 'created', 'approved_comment')
-    list_filter = ('approved_comment', 'created')
+    list_display = ('name', 'post', 'created', 'approved')
+    list_filter = ('approved', 'created')
     search_fields = ('name', 'email', 'body')
     actions = ['approve_comments']
 
     def approve_comments(self, request, queryset):
-        queryset.update(approved_comment=True)
+        queryset.update(approved=True)

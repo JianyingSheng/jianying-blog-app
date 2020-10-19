@@ -3,10 +3,12 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
-
 class PostQuerySet(models.QuerySet):
     def published(self):
-        return self.filter(status=self.model.PUBLISHED)
+        self.filter(status=self.model.PUBLISHED)
+
+    def drafts(self):
+        self.filter(status=self.model.DRAFT)
 
 class Topic(models.Model):
     name = models.CharField(
@@ -74,7 +76,6 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-
 class Comment(models.Model):
     post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name='comments')
     name = models.CharField(max_length=80)
@@ -82,12 +83,7 @@ class Comment(models.Model):
     body = models.TextField(max_length=300)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
-    #approved = models.BooleanField(default=False)
-    approved_comment = models.BooleanField(default=False)
-    ##################################################
-    def approved(self):
-        return self.Comment.objects.filter(approved_comment=True)
-    ###################################################
+    approved = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-created']
