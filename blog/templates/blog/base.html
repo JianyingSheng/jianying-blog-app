@@ -27,9 +27,9 @@
 
   <main id="main-content">
     <div>
-    {% block main %}
-    <!-- Content for the main block will be rendered here -->
-    {% endblock %}
+        {% block main %}
+        <!-- Content for the main block will be rendered here -->
+        {% endblock %}
     </div>
 
     <aside id="sidebar">
@@ -37,7 +37,7 @@
         <h3>Authors</h3>
         <ul>
             {% for author in authors %}
-            <li>{{ author.get_full_name }}</li>
+                <li>{{ author.get_full_name }}</li>
             {% endfor %}
         </ul>
       </section>
