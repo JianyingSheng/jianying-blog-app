@@ -3,6 +3,7 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth import get_user_model
+from django.db.models import Count
 
 
 class PostQuerySet(models.QuerySet):
@@ -13,6 +14,12 @@ class PostQuerySet(models.QuerySet):
         User = get_user_model()
         # Get the users who are authors of this queryset
         return User.objects.filter(blog_posts__in=self).distinct()
+
+    def get_post_with_most_comment(self):
+        posts = Post.objects.annotate(total_comments=Count('comments'))
+        return posts.order_by('-total_comments')
+
+
 
 class Topic(models.Model):
     name = models.CharField(

@@ -31,12 +31,10 @@
     </div>
 
     <aside id="sidebar">
-      <section id="author-list">
-        <h3>Authors</h3>
+      <section id="popular-comments-list">
+        <h3>Popular Comments</h3>
         <ul>
-          {% for author in authors %}
-            <li>{{ author.get_full_name }}</li>
-          {% endfor %}
+            <li>{{ popular_comments }}</li>
         </ul>
       </section>
     </aside>
