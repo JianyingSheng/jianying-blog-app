@@ -65,9 +65,11 @@ a:hover {
 
 /* Style the main content */
 #main-content {
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: auto 200px;
 }
+
 
 /* Style the footer */
 #site-footer {
