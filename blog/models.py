@@ -15,10 +15,12 @@ class PostQuerySet(models.QuerySet):
         # Get the users who are authors of this queryset
         return User.objects.filter(blog_posts__in=self).distinct()
 
-    def get_post_with_most_comment(self):
-        posts = Post.objects.annotate(total_comments=Count('comments'))
-        return posts.order_by('-total_comments')
-
+    #def get_post_with_most_comment(self):
+    #    posts = Post.objects.annotate(total_comments=Count('comments'))
+    #    return posts.order_by('-total_comments')
+    def get_topic_with_most_post(self):
+        topics = Topic.objects.annotate(total_posts=Count('blog_posts'))
+        return topics.order_by('-total_posts')
 
 
 class Topic(models.Model):

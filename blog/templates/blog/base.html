@@ -32,9 +32,11 @@
 
     <aside id="sidebar">
       <section id="popular-comments-list">
-        <h3>Popular Comments</h3>
+        <h3>Popular Topics</h3>
         <ul>
-            <li>{{ popular_comments }}</li>
+            {% for popular_topic in popular_topics %}
+                <li>{{ popular_topic }}</li>
+            {% endfor %}
         </ul>
       </section>
     </aside>
